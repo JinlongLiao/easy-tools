@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="gbk"?>
+
+<person-list>
+    <person id="100">
+        <name>张三</name>
+        <age>19</age>
+        <email>123454@qq.com</email>
+        <address>广州天河</address>
+    </person>
+
+    <person id="200">
+        <name>李四</name>
+        <age>20</age>
+        <email>22222@qq.com</email>
+        <address>广州番禺</address>
+    </person>
+
+    <person id="1000">
+        <name>王五</name>
+        <age>19</age>
+        <email>123454@qq.com</email>
+        <address>广州天河</address>
+    </person>
+
+    <person id="2000">
+        <name>赵六</name>
+        <age>20</age>
+        <email>22222@qq.com</email>
+        <address>广州番禺</address>
+    </person>
+</person-list>
