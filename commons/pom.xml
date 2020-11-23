@@ -22,6 +22,7 @@
         <module>commons-document</module>
         <module>commons-serialize</module>
         <module>commons-servlet</module>
+        <module>commons-mapstruct</module>
     </modules>
     <dependencies>
         <dependency>
