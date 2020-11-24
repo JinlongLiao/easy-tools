@@ -17,6 +17,9 @@ public class InnerCoreDataConverter {
         if (data == null) {
             return 0;
         }
+        if (data instanceof String) {
+            return Byte.valueOf(String.valueOf(data));
+        }
         return (byte) data;
     }
 
@@ -29,6 +32,9 @@ public class InnerCoreDataConverter {
     public static short getShort(Object data) {
         if (data == null) {
             return 0;
+        }
+        if (data instanceof String) {
+            return Short.valueOf(String.valueOf(data));
         }
         return (short) data;
     }
@@ -43,6 +49,9 @@ public class InnerCoreDataConverter {
         if (data == null) {
             return 0;
         }
+        if (data instanceof String) {
+            return Float.valueOf(String.valueOf(data));
+        }
         return (float) data;
     }
 
@@ -55,6 +64,9 @@ public class InnerCoreDataConverter {
     public static double getDouble(Object data) {
         if (data == null) {
             return 0;
+        }
+        if (data instanceof String) {
+            return Double.valueOf(String.valueOf(data));
         }
         return (double) data;
     }
@@ -69,6 +81,9 @@ public class InnerCoreDataConverter {
         if (data == null) {
             return 0;
         }
+        if (data instanceof String) {
+            return Long.valueOf(String.valueOf(data));
+        }
         return (long) data;
     }
 
@@ -81,6 +96,9 @@ public class InnerCoreDataConverter {
     public static int getInt(Object data) {
         if (data == null) {
             return 0;
+        }
+        if (data instanceof String) {
+            return Integer.valueOf(String.valueOf(data));
         }
         return (int) data;
     }
@@ -105,9 +123,6 @@ public class InnerCoreDataConverter {
      * @return char
      */
     public static char getChar(Object data) {
-        if (data == null) {
-            return 0;
-        }
-        return (char) data;
+        return (char) getInt(data);
     }
 }

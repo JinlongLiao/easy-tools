@@ -11,7 +11,8 @@ import java.util.Map;
 
 
 public class ReflectTest {
-    public static final int SIZE = 700000;
+    public static boolean warmup = false;
+    public static final int SIZE = 100000;
     private Map<String, Object> dataMap = new HashMap<String, Object>() {{
         put("name", "liaojl");
         put("age", 26);
@@ -25,6 +26,10 @@ public class ReflectTest {
         testMapCustomize();
         testArrayCustomize();
         testReflect();
+        warmup = true;
+        testMapCustomize();
+        testArrayCustomize();
+        testReflect();
     }
 
     private void testArrayCustomize() {
@@ -35,7 +40,8 @@ public class ReflectTest {
             final Person person = data2Object.toArrayConverter(dataArray);
         }
         final long end = System.currentTimeMillis();
-        System.out.println("testArrayCustomize:" + (end - start));
+        if (warmup)
+            System.out.println("testArrayCustomize:" + (end - start));
     }
 
     private void testMapCustomize() {
@@ -46,7 +52,8 @@ public class ReflectTest {
             final Person person = data2Object.toMapConverter(item);
         }
         final long end = System.currentTimeMillis();
-        System.out.println("testMapCustomize:" + (end - start));
+        if (warmup)
+            System.out.println("testMapCustomize:" + (end - start));
     }
 
     private void testReflect() throws Exception {
@@ -62,7 +69,8 @@ public class ReflectTest {
             }
         }
         final long end = System.currentTimeMillis();
-        System.out.println("testReflect:" + (end - start));
+        if (warmup)
+            System.out.println("testReflect:" + (end - start));
     }
 }
 

@@ -1,5 +1,6 @@
 package io.github.jinlonghliao.commons.mapstruct.core;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -27,4 +28,13 @@ public interface IData2Object {
      * @return T
      */
     <T> T toArrayConverter(Object[] data);
+
+    /**
+     * {@link javax.servlet.http.HttpServletRequest}转换接口
+     *
+     * @param request
+     * @param <T>
+     * @return T
+     */
+    <T> T toHttpServletRequestConverter(HttpServletRequest request);
 }

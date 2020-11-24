@@ -66,6 +66,8 @@ public class Proxy {
                     paramType = ParamType.MAP;
                 } else if ("toArrayConverter".equals(method.getName())) {
                     paramType = ParamType.ARRAY;
+                } else if ("toHttpServletRequestConverter".equals(method.getName())) {
+                    paramType = ParamType.SERVLET;
                 } else {
                     throw new ConverterException("参数异常：");
                 }
@@ -82,7 +84,7 @@ public class Proxy {
 
 
     /**
-     * 构建Map/Array 参数函数实现
+     * 构建Map/Array/SERVLET 参数函数实现
      *
      * @param paramType
      * @param method
@@ -134,10 +136,21 @@ public class Proxy {
                 buffer.append("($1.get(\"");
                 buffer.append(fieldName);
                 buffer.append("\"))");
-            } else {
+            } else if (ParamType.ARRAY.equals(paramType)) {
                 buffer.append("($1[");
                 buffer.append(i);
                 buffer.append("])");
+            } else if (ParamType.SERVLET.equals(paramType)) {
+                final String fieldName = nonNull
+                        ? mapping.source().length() > 0
+                        ? mapping.source()
+                        : field.getName()
+                        : field.getName();
+                buffer.append("($1.getParameter(\"");
+                buffer.append(fieldName);
+                buffer.append("\"))");
+            } else {
+                throw new ConverterNotFountException(ParamType.class.getName() + "Not Found: " + paramType);
             }
 
             buffer.append(");");

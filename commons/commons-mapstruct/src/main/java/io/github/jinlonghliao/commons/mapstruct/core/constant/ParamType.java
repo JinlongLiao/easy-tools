@@ -15,5 +15,9 @@ public enum ParamType {
     /**
      * Map
      */
-    MAP
+    MAP,
+    /**
+     * HttpServletRequest
+     */
+    SERVLET
 }
