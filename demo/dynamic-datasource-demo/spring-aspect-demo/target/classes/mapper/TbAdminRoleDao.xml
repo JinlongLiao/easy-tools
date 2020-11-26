@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.jinlongliao.easy.dynamic.db.spring.aspect.demo.mybatis.dao.TbAdminRoleDao">
+
+  <resultMap id="BaseResultMap" type="io.github.jinlongliao.easy.dynamic.db.spring.aspect.demo.mybatis.entity.TbAdminRole">
+    <!--@Table TB_ADMIN_ROLE-->
+    <result property="id" column="ID" jdbcType="VARCHAR"/>
+    <result property="addBy" column="ADD_BY" jdbcType="VARCHAR"/>
+    <result property="addTime" column="ADD_TIME" jdbcType="TIMESTAMP"/>
+    <result property="updateBy" column="UPDATE_BY" jdbcType="VARCHAR"/>
+    <result property="updateTime" column="UPDATE_TIME" jdbcType="TIMESTAMP"/>
+    <result property="roleName" column="ROLE_NAME" jdbcType="VARCHAR"/>
+    <result property="roleValue" column="ROLE_VALUE" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!--查询单个-->
+  <select id="queryById" resultMap="BaseResultMap">
+    select
+    ID, ADD_BY, ADD_TIME, UPDATE_BY, UPDATE_TIME, ROLE_NAME, ROLE_VALUE
+    from TB_ADMIN_ROLE
+    where ID = #{id}
+  </select>
+
+  <!--查询指定行数据-->
+  <select id="queryAllByLimit" resultMap="BaseResultMap">
+    select
+    ID, ADD_BY, ADD_TIME, UPDATE_BY, UPDATE_TIME, ROLE_NAME, ROLE_VALUE
+    from TB_ADMIN_ROLE
+    limit #{offset}, #{limit}
+  </select>
+
+  <!--通过实体作为筛选条件查询-->
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    ID, ADD_BY, ADD_TIME, UPDATE_BY, UPDATE_TIME, ROLE_NAME, ROLE_VALUE
+    from TB_ADMIN_ROLE
+    <where>
+      <if test="id != null and id != ''">
+        and ID = #{id}
+      </if>
+      <if test="addBy != null and addBy != ''">
+        and ADD_BY = #{addBy}
+      </if>
+      <if test="addTime != null">
+        and ADD_TIME = #{addTime}
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        and UPDATE_BY = #{updateBy}
+      </if>
+      <if test="updateTime != null">
+        and UPDATE_TIME = #{updateTime}
+      </if>
+      <if test="roleName != null and roleName != ''">
+        and ROLE_NAME = #{roleName}
+      </if>
+      <if test="roleValue != null and roleValue != ''">
+        and ROLE_VALUE = #{roleValue}
+      </if>
+    </where>
+  </select>
+
+  <!--新增所有列-->
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    insert into TB_ADMIN_ROLE(ADD_BY, ADD_TIME, UPDATE_BY, UPDATE_TIME, ROLE_NAME, ROLE_VALUE)
+    values (#{addBy}, #{addTime}, #{updateBy}, #{updateTime}, #{roleName}, #{roleValue})
+  </insert>
+
+  <!--通过主键修改数据-->
+  <update id="update">
+    update TB_ADMIN_ROLE
+    <set>
+      <if test="addBy != null and addBy != ''">
+        ADD_BY = #{addBy},
+      </if>
+      <if test="addTime != null">
+        ADD_TIME = #{addTime},
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        UPDATE_BY = #{updateBy},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime},
+      </if>
+      <if test="roleName != null and roleName != ''">
+        ROLE_NAME = #{roleName},
+      </if>
+      <if test="roleValue != null and roleValue != ''">
+        ROLE_VALUE = #{roleValue},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+
+  <!--通过主键删除-->
+  <delete id="deleteById">
+    delete from TB_ADMIN_ROLE where ID = #{id}
+  </delete>
+
+</mapper>
