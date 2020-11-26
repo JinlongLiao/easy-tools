@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>h2database</module>
+        <module>dynamic-datasource</module>
     </modules>
 
 

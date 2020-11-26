@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.jinlongliao.easy.dynamic.db.spring.config.EasyDbDataSourceConfiguration,\
+io.github.jinlongliao.easy.dynamic.db.spring.config.EasyDbAutoConfiguration

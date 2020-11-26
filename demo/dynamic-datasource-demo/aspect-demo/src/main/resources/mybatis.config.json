@@ -1,0 +1,14 @@
+{
+  "db1": {
+    "url": "jdbc:mysql://localhost:3306/CMDB?serverTimezone=UTC",
+    "name": "silu",
+    "password": 59421,
+    "driver-class-name": "com.mysql.cj.jdbc.Driver"
+  },
+  "db2": {
+    "url": "jdbc:mysql://localhost:3306/test?serverTimezone=UTC",
+    "name": "silu",
+    "password": 59421,
+    "driver-class-name": "com.mysql.cj.jdbc.Driver"
+  }
+}
