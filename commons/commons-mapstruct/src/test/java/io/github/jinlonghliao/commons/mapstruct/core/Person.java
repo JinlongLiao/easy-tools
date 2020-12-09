@@ -7,9 +7,7 @@ import java.util.Date;
 public class Person {
     private String name;
     private int age;
-    @Mapping(className = "io.github.jinlonghliao.commons.mapstruct.core.Convert",
-            methodName = "getDate",
-    method = "setBirth")
+    @Mapping(method = "setBirth")
     private Date birthday;
 
     public String getName() {

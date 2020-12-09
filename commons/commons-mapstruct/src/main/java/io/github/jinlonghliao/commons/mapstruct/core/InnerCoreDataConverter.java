@@ -1,5 +1,7 @@
 package io.github.jinlonghliao.commons.mapstruct.core;
 
+import java.util.Date;
+
 /**
  * 内部基本类型数据转换
  *
@@ -124,5 +126,15 @@ public class InnerCoreDataConverter {
      */
     public static char getChar(Object data) {
         return (char) getInt(data);
+    }
+
+    /**
+     * 数据转换为 Date
+     *
+     * @param data
+     * @return Date
+     */
+    public static Date geDate(Object data) {
+        return (Date) (data);
     }
 }

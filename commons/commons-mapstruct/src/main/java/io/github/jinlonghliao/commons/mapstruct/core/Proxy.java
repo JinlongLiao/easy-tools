@@ -4,13 +4,13 @@ import io.github.jinlonghliao.commons.mapstruct.annotation.Mapping;
 import io.github.jinlonghliao.commons.mapstruct.core.constant.ParamType;
 import io.github.jinlonghliao.commons.mapstruct.exception.ConverterException;
 import io.github.jinlonghliao.commons.mapstruct.exception.ConverterNotFountException;
+import io.github.jinlonghliao.commons.mapstruct.utils.Objects;
 import javassist.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -169,14 +169,17 @@ public class Proxy {
     private String getParamTypeConverterMethod(Field field, Mapping mapping) {
         final Class<?> type = field.getType();
         String converterMethod;
-        if (Objects.isNull(mapping)) {
+        final boolean exist = Objects.nonNull(mapping) &&
+                mapping.className().trim().length() > 0 &&
+                mapping.className().trim().length() > 0;
+        if (exist) {
+            converterMethod = mapping.className() + DOT + mapping.methodName();
+        } else {
             if (VALUE_CONVERTER.containsKey(type)) {
                 converterMethod = VALUE_CONVERTER.get(type);
             } else {
                 throw new ConverterNotFountException("字段值转换类找不到");
             }
-        } else {
-            converterMethod = mapping.className() + DOT + mapping.methodName();
         }
         return converterMethod;
     }
