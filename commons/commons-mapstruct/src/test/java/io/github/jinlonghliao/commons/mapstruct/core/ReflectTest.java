@@ -23,8 +23,9 @@ public class ReflectTest {
         put("birthday", new Date());
         put("arr", Arrays.asList("2312", "12423"));
         put("arr2", data);
+        put("array", new int[]{1, 2, 3});
     }};
-    private Object[] dataArray = new Object[]{"liaojl", 26, new Date(), Arrays.asList("2312", "12423"), data};
+    private Object[] dataArray = new Object[]{"liaojl", 26, new Date(), Arrays.asList("2312", "12423"), data, new int[]{1, 2, 3}};
     private final IData2Object data2Object = BeanCopierUtils.getData2Object(Person.class);
 
     @Test

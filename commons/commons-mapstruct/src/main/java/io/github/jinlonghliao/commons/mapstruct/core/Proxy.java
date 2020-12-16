@@ -43,6 +43,11 @@ public class Proxy {
     private static final String PROXY_SUFFIX = "Impl";
     private static final String INTERFACE_NAME = IData2Object.class.getName();
 
+    static {
+        ClassClassPath classPath = new ClassClassPath(IData2Object.class);
+        pool.insertClassPath(classPath);
+    }
+
     /**
      * 生成代理对象
      *
@@ -175,6 +180,7 @@ public class Proxy {
         if (exist) {
             converterMethod = mapping.className() + DOT + mapping.methodName();
         } else {
+            String name = type.getName();
             if (VALUE_CONVERTER.containsKey(type)) {
                 converterMethod = VALUE_CONVERTER.get(type);
             } else {

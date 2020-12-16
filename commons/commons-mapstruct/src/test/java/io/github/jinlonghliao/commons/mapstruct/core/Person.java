@@ -13,6 +13,15 @@ public class Person {
     private Date birthday;
     private List<String> arr;
     private Map<String, Object> arr2;
+    public int[] array;
+
+    public int[] getArray() {
+        return array;
+    }
+
+    public void setArray(int[] array) {
+        this.array = array;
+    }
 
     public String getName() {
         return name;

@@ -144,7 +144,7 @@ public class InnerCoreDataConverter {
      * 数据转换为 List
      *
      * @param data
-     * @return Date
+     * @return List
      */
     public static List<Object> getList(Object data) {
         return (List<Object>) data;
@@ -154,9 +154,40 @@ public class InnerCoreDataConverter {
      * 数据转换为 Map
      *
      * @param data
-     * @return Date
+     * @return Map
      */
     public static Map getMap(Object data) {
         return (Map) data;
     }
+
+    /**
+     * 数据转换为 Integer[]
+     *
+     * @param data
+     * @return Integer[]
+     */
+    public static Integer[] getIntArr(Object data) {
+        return (Integer[]) data;
+    }
+
+    /**
+     * 数据转换为 int[]
+     *
+     * @param data
+     * @return int[]
+     */
+    public static int[] getInt2Arr(Object data) {
+        return (int[]) data;
+    }
+
+    /**
+     * 数据转换为 String[]
+     *
+     * @param data
+     * @return String[]
+     */
+    public static String[] getStringArr(Object data) {
+        return (String[]) data;
+    }
+
 }
