@@ -1,6 +1,8 @@
 package io.github.jinlonghliao.commons.mapstruct.core;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 内部基本类型数据转换
@@ -136,5 +138,25 @@ public class InnerCoreDataConverter {
      */
     public static Date geDate(Object data) {
         return (Date) (data);
+    }
+
+    /**
+     * 数据转换为 List
+     *
+     * @param data
+     * @return Date
+     */
+    public static List<Object> getList(Object data) {
+        return (List<Object>) data;
+    }
+
+    /**
+     * 数据转换为 Map
+     *
+     * @param data
+     * @return Date
+     */
+    public static Map getMap(Object data) {
+        return (Map) data;
     }
 }

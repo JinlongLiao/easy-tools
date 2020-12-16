@@ -11,8 +11,8 @@
 
     <artifactId>commons-mapstruct</artifactId>
     <properties>
-        <javassist.version>3.27.0-GA</javassist.version>
-        <servlet.version>4.0.4</servlet.version>
+        <javassist.version>3.25.0-GA</javassist.version>
+        <servlet.version>3.1.0</servlet.version>
     </properties>
     <dependencies>
         <dependency>
@@ -21,8 +21,8 @@
             <version>${javassist.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
             <version>${servlet.version}</version>
             <optional>true</optional>
         </dependency>

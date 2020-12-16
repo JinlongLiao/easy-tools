@@ -5,9 +5,7 @@ import io.github.jinlonghliao.commons.mapstruct.BeanCopierUtils;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author liaojinlong
@@ -17,12 +15,16 @@ import java.util.Map;
 public class ReflectTest {
     public static boolean warmup = false;
     public static final int SIZE = 100000;
+    private Map<String, Object> data = new HashMap<>();
+
     private Map<String, Object> dataMap = new HashMap<String, Object>() {{
         put("name", "liaojl");
         put("age", 26);
         put("birthday", new Date());
+        put("arr", Arrays.asList("2312", "12423"));
+        put("arr2", data);
     }};
-    private Object[] dataArray = new Object[]{"liaojl", 26, new Date()};
+    private Object[] dataArray = new Object[]{"liaojl", 26, new Date(), Arrays.asList("2312", "12423"), data};
     private final IData2Object data2Object = BeanCopierUtils.getData2Object(Person.class);
 
     @Test
@@ -38,22 +40,25 @@ public class ReflectTest {
 
     private void testArrayCustomize() {
         final long start = System.currentTimeMillis();
+        Person person = null;
         for (int i = 0; i < SIZE; i++) {
             final Class<Person> personClass = Person.class;
             Map<String, Object> item = new HashMap<>(dataMap);
-            final Person person = data2Object.toArrayConverter(dataArray);
+            person = data2Object.toArrayConverter(dataArray);
         }
         final long end = System.currentTimeMillis();
         if (warmup)
             System.out.println("testArrayCustomize:" + (end - start));
+        List<String> arr = person.getArr();
     }
 
     private void testMapCustomize() {
         final long start = System.currentTimeMillis();
+        Person person;
         for (int i = 0; i < SIZE; i++) {
             final Class<Person> personClass = Person.class;
             Map<String, Object> item = new HashMap<>(dataMap);
-            final Person person = data2Object.toMapConverter(item);
+            person = data2Object.toMapConverter(item);
         }
         final long end = System.currentTimeMillis();
         if (warmup)
