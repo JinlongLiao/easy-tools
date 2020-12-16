@@ -38,3 +38,5 @@ hs_err_pid*
 /commons/commons-database/dynamic-datasource/dynamic-datasource-aspect/target/
 /demo/dynamic-datasource-demo/simple-demo/target/
 /demo/dynamic-datasource-demo/spring-boot-demo/target/
+/demo/dynamic-datasource-demo/aspect-demo/target/
+/demo/dynamic-datasource-demo/spring-aspect-demo/target/
