@@ -34,3 +34,7 @@ hs_err_pid*
 /commons/commons-servlet/sample/target/
 /local.properties
 /commons/commons-common/dump.rdb
+/commons/commons-database/dynamic-datasource/dynamic-datasource-core/target/
+/commons/commons-database/dynamic-datasource/dynamic-datasource-aspect/target/
+/demo/dynamic-datasource-demo/simple-demo/target/
+/demo/dynamic-datasource-demo/spring-boot-demo/target/
