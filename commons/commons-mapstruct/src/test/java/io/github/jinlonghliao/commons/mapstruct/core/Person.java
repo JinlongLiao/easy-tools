@@ -1,12 +1,18 @@
 package io.github.jinlonghliao.commons.mapstruct.core;
 
+import io.github.jinlonghliao.commons.mapstruct.annotation.Ignore;
 import io.github.jinlonghliao.commons.mapstruct.annotation.Mapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class Person {
+    private static final Logger log = LoggerFactory.getLogger(Person.class);
+    @Ignore
+    private int ignore;
     private String name;
     private int age;
     @Mapping(method = "setBirth")
@@ -61,5 +67,13 @@ public class Person {
 
     public void setArr(List<String> arr) {
         this.arr = arr;
+    }
+
+    public int getIgnore() {
+        return ignore;
+    }
+
+    public void setIgnore(int ignore) {
+        this.ignore = ignore;
     }
 }

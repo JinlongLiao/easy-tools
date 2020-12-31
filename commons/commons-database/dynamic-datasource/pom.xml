@@ -14,7 +14,7 @@
     <modules>
         <module>dynamic-datasource-core</module>
         <module>dynamic-datasource-aspect</module>
-    </modules>
+     </modules>
     <properties>
         <jdk.version>1.8</jdk.version>
     </properties>

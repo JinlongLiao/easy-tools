@@ -32,11 +32,11 @@ public class ReflectTest {
     public void test() throws Exception {
         testMapCustomize();
         testArrayCustomize();
-        testReflect();
+        // testReflect();
         warmup = true;
         testMapCustomize();
         testArrayCustomize();
-        testReflect();
+        // testReflect();
     }
 
     private void testArrayCustomize() {

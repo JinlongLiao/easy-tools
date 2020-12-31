@@ -1,5 +1,6 @@
 package io.github.jinlonghliao.commons.mapstruct.core;
 
+import io.github.jinlonghliao.commons.mapstruct.annotation.Ignore;
 import io.github.jinlonghliao.commons.mapstruct.annotation.Mapping;
 import io.github.jinlonghliao.commons.mapstruct.core.constant.ParamType;
 import io.github.jinlonghliao.commons.mapstruct.exception.ConverterException;
@@ -119,8 +120,15 @@ public class Proxy {
         final Field[] fields = tClass.getDeclaredFields();
         final String objectName = tClass.getName();
         buffer.append(objectName + " tmp= new " + objectName + "();");
-        for (int i = 0; i < fields.length; i++) {
-            Field field = fields[i];
+        int fieldIndex = 0;
+        for (Field field : fields) {
+            Ignore ignore = field.getAnnotation(Ignore.class);
+            if (ignore != null && ignore.value()) {
+                continue;
+            }
+            if (Modifier.isFinal(field.getModifiers())) {
+                continue;
+            }
             final Mapping mapping = field.getAnnotation(Mapping.class);
             final boolean nonNull = Objects.nonNull(mapping);
             final String setMethodName = nonNull
@@ -143,7 +151,7 @@ public class Proxy {
                 buffer.append("\"))");
             } else if (ParamType.ARRAY.equals(paramType)) {
                 buffer.append("($1[");
-                buffer.append(i);
+                buffer.append(fieldIndex);
                 buffer.append("])");
             } else if (ParamType.SERVLET.equals(paramType)) {
                 final String fieldName = nonNull
@@ -159,7 +167,9 @@ public class Proxy {
             }
 
             buffer.append(");");
+            fieldIndex++;
         }
+
         buffer.append("return tmp;");
         buffer.append("}");
         return buffer.toString();

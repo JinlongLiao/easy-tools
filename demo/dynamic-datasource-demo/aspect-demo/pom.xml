@@ -38,17 +38,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.2.9</version>
+            <version>5.2.10.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>5.2.9</version>
+            <version>5.2.10.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.2.9</version>
+            <version>5.2.10.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -70,9 +70,19 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-         </dependency>
+        </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
         <!--在mvn中 编译无法读取java目录下的xml文件,所以需要添加下面的资源配置方案. -->
         <resources>
             <resource>
@@ -95,4 +105,5 @@
             </resource>
         </resources>
     </build>
+
 </project>
