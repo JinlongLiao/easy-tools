@@ -1,5 +1,6 @@
 package io.github.jinlonghliao.commons.mapstruct.core;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -147,6 +148,7 @@ public class InnerCoreDataConverter {
      * @return List
      */
     public static List<Object> getList(Object data) {
+
         return (List<Object>) data;
     }
 
@@ -167,6 +169,23 @@ public class InnerCoreDataConverter {
      * @return Integer[]
      */
     public static Integer[] getIntArr(Object data) {
+        if (!data.getClass().getName().equals("[Ljava.lang.Integer;")) {
+            if (data.getClass().isArray()) {
+                Object[] objects = (Object[]) data;
+                Integer[] result = new Integer[objects.length];
+                int index = 0;
+                for (Object object : objects) {
+                    if (object instanceof String) {
+                        result[index++] = Integer.valueOf(String.valueOf(object));
+                    } else {
+                        result[index++] = ((Integer) object);
+                    }
+                }
+                data = result;
+            } else {
+                data = new Integer(Integer.valueOf(String.valueOf(data)));
+            }
+        }
         return (Integer[]) data;
     }
 
@@ -177,6 +196,25 @@ public class InnerCoreDataConverter {
      * @return int[]
      */
     public static int[] getInt2Arr(Object data) {
+        if (!data.getClass().getName().equals("[I")) {
+            if (data.getClass().isArray()) {
+                Object[] objects = (Object[]) data;
+                int[] result = new int[objects.length];
+                int index = 0;
+                for (Object object : objects) {
+                    if (object instanceof String) {
+                        result[index++] = Integer.parseInt(String.valueOf(object));
+                    } else {
+                        result[index++] = ((Integer) object);
+                    }
+                }
+                data = result;
+            } else {
+                data = new Integer(Integer.parseInt(String.valueOf(data)));
+            }
+        }
+
+
         return (int[]) data;
     }
 
@@ -190,4 +228,9 @@ public class InnerCoreDataConverter {
         return (String[]) data;
     }
 
+    public static void main(String[] args) {
+        int[] a = new int[]{1};
+        String name = a.getClass().getName();
+        System.out.println("args = " + Arrays.deepToString(args));
+    }
 }

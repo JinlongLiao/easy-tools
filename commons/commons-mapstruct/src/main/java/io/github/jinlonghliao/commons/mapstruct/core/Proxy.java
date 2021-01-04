@@ -11,6 +11,8 @@ import javassist.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -159,9 +161,21 @@ public class Proxy {
                         ? mapping.source()
                         : field.getName()
                         : field.getName();
-                buffer.append("($1.getParameter(\"");
-                buffer.append(fieldName);
-                buffer.append("\"))");
+                Class<?> type = field.getType();
+                if (type == List.class) {
+                    buffer.append("( java.util.Arrays.asList($1.getParameterValues(\"");
+                    buffer.append(fieldName);
+                    buffer.append("\")))");
+                } else if (type.isArray()) {
+                    buffer.append("($1.getParameterValues(\"");
+                    buffer.append(fieldName);
+                    buffer.append("\"))");
+                } else {
+                    buffer.append("($1.getParameter(\"");
+                    buffer.append(fieldName);
+                    buffer.append("\"))");
+                }
+
             } else {
                 throw new ConverterNotFountException(ParamType.class.getName() + "Not Found: " + paramType);
             }

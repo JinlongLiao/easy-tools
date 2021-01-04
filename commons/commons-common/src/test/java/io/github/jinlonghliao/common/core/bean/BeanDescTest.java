@@ -1,8 +1,6 @@
 package io.github.jinlonghliao.common.core.bean;
 
-import io.github.jinlonghliao.common.core.bean.BeanDesc;
-import io.github.jinlonghliao.common.core.bean.BeanUtil;
-import io.github.jinlonghliao.common.core.bean.PropDesc;
+
 import org.junit.Assert;
 import org.junit.Test;
 
