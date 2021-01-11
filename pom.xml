@@ -13,6 +13,7 @@
         <module>demo</module>
         <module>spring-commons</module>
         <module>spring-boot-commons</module>
+        <module>swagger4j</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

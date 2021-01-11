@@ -7,11 +7,12 @@ import io.github.jinlonghliao.commons.mapstruct.exception.ConverterException;
 import io.github.jinlonghliao.commons.mapstruct.exception.ConverterNotFountException;
 import io.github.jinlonghliao.commons.mapstruct.utils.Objects;
 import javassist.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,6 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2020/11/23 21:48
  */
 public class Proxy {
+    private static final Logger log = LoggerFactory.getLogger(Proxy.class);
     public static final String DOT = ".";
     /**
      * 数据值转换 函数名
@@ -81,7 +83,6 @@ public class Proxy {
             }
             proxyObject = (IData2Object) ctClass.toClass().newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ConverterException(e);
         }
 
