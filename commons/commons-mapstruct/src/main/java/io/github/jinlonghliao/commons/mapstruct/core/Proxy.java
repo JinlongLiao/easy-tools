@@ -66,8 +66,6 @@ public class Proxy {
             ctClass.setInterfaces(new CtClass[]{aClass});
             //代理类的所有方法
             CtMethod[] methods = aClass.getDeclaredMethods();
-            //代理类的所有属性
-            CtField[] fields = aClass.getDeclaredFields();
             for (CtMethod method : methods) {
                 ParamType paramType;
                 if ("toMapConverter".equals(method.getName())) {
