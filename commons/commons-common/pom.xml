@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <cglib.version>3.3.0</cglib.version>
-        <lombok.version>1.18.12</lombok.version>
+        <lombok.version>1.18.16</lombok.version>
         <javassist.version>3.27.0-GA</javassist.version>
         <openjdk.jol.version>0.10</openjdk.jol.version>
     </properties>

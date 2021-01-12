@@ -14,6 +14,7 @@
         <module>spring-commons</module>
         <module>spring-boot-commons</module>
         <module>swagger4j</module>
+        <module>hotswap</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
