@@ -1,7 +1,6 @@
 package io.github.jinlonghliao.common.string;
 
 
-import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -94,7 +93,7 @@ public class StringUtil {
      * @param charSequences
      * @return
      */
-    public synchronized static String appendStr(@NotNull CharSequence... charSequences) {
+    public synchronized static String appendStr(CharSequence... charSequences) {
         StringBuilder builder = new StringBuilder();
         for (CharSequence charSequence : charSequences) {
             builder.append(charSequence);
@@ -131,7 +130,6 @@ public class StringUtil {
     public static List<String> split(String className, String dot) {
         return Arrays.asList(className.split(dot));
     }
-
 
 
     /**

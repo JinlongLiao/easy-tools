@@ -25,6 +25,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet.version}</version>
             <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

@@ -5,7 +5,6 @@ import io.github.jinlonghliao.common.core.util.CharsetUtil;
 import io.github.jinlonghliao.common.serialize.XmlParser;
 import io.github.jinlonghliao.common.serialize.jackjson.JackJsomXmlParser;
 
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -41,7 +40,7 @@ public class JaxbXmlParser implements XmlParser {
     }
 
     @Override
-    public <T> String java2xml(@NotNull T data) throws Exception {
+    public <T> String java2xml(T data) throws Exception {
         JAXBContext jaxbContext = geJAXBContextt(data.getClass());
         // 创建 Marshaller 实例
         Marshaller marshaller = jaxbContext.createMarshaller();
@@ -56,7 +55,7 @@ public class JaxbXmlParser implements XmlParser {
     }
 
     @Override
-    public <T> T xml2java(@NotNull String xml, Class<T> tClass) throws Exception {
+    public <T> T xml2java(String xml, Class<T> tClass) throws Exception {
         if (Objects.isNull(tClass)) {
             return (T) JackJsomXmlParser.getInstance().xml2java(xml);
         }
