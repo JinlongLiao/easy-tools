@@ -7,12 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.io.File;
-import java.io.FileFilter;
+import java.io.*;
 import java.lang.management.ManagementFactory;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.SimpleFormatter;
 
 /**
  * @author liaojinlong
@@ -35,6 +36,7 @@ public class HotSwapHttpServletContext implements ServletContextListener {
     private static final String SPILT = ";";
     private String period;
     private String interval;
+    private String UPDATE_DATE;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -51,7 +53,7 @@ public class HotSwapHttpServletContext implements ServletContextListener {
             this.interval = "5";
         }
         String path = sce.getServletContext().getInitParameter("PATH");
-        if (path == null || (path = path.trim()).equals("")) {
+        if (path != null && !(path = path.trim()).equals("")) {
             PATCHER_DIR = path;
         } else {
             String realPath = sce.getServletContext().getRealPath("/");
@@ -62,6 +64,7 @@ public class HotSwapHttpServletContext implements ServletContextListener {
             }
         }
         AGENT_PATH = PATCHER_DIR + File.separator + agentName;
+        UPDATE_DATE = PATCHER_DIR + File.separator + "UPDATE.txt";
         startSchedule();
     }
 
@@ -96,7 +99,7 @@ public class HotSwapHttpServletContext implements ServletContextListener {
                             try {
                                 StringBuffer keys = new StringBuffer(PATCHER_DIR);
                                 keys.append(SPILT);
-                                for (String key : fileStatusCache.keySet()) {
+                                for (String key : temp.keySet()) {
                                     log.debug("热更新文件名 {}", key);
                                     keys.append(key);
                                     keys.append(SPILT);
@@ -108,6 +111,23 @@ public class HotSwapHttpServletContext implements ServletContextListener {
                                 // 这个路径是相对于被热更的服务的，也就是这个pid的服务，也可以使用绝对路径。
                                 vm.loadAgent(AGENT_PATH, substring);
                                 vm.detach();
+                                File file = new File(UPDATE_DATE);
+                                if (!file.exists()) {
+                                    file.createNewFile();
+                                }
+                                try (OutputStream os = new FileOutputStream(file)) {
+                                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
+                                    writer.write("update date" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                                    writer.newLine();
+                                    for (String key : temp.keySet()) {
+                                        writer.write("file: " + key);
+                                        writer.newLine();
+                                    }
+                                    writer.flush();
+                                    writer.close();
+                                } catch (Exception e) {
+                                    log.error("日志写入失败", e);
+                                }
                             } catch (Exception e) {
                                 log.error("JavaClass热更新  失败", e);
                             }
