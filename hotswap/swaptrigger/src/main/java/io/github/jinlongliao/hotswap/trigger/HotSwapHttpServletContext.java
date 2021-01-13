@@ -41,7 +41,6 @@ public class HotSwapHttpServletContext implements ServletContextListener {
         String name = ManagementFactory.getRuntimeMXBean().getName();
         //这里为了方便测试，打印出来进程id
         PID = name.split("@")[0];
-        String realPath = sce.getServletContext().getRealPath("/");
         String agentName = sce.getServletContext().getInitParameter("AGENT_NAME");
         this.period = sce.getServletContext().getInitParameter("PERIOD");
         this.interval = sce.getServletContext().getInitParameter("INTERVAL");
@@ -51,10 +50,16 @@ public class HotSwapHttpServletContext implements ServletContextListener {
         if (this.interval == null || this.interval.trim().length() == 0) {
             this.interval = "5";
         }
-        if (realPath.endsWith(File.separator)) {
-            PATCHER_DIR = realPath + "patch";
+        String path = sce.getServletContext().getInitParameter("PATH");
+        if (path == null || (path = path.trim()).equals("")) {
+            PATCHER_DIR = path;
         } else {
-            PATCHER_DIR = realPath + File.separator + "patch";
+            String realPath = sce.getServletContext().getRealPath("/");
+            if (realPath.endsWith(File.separator)) {
+                PATCHER_DIR = realPath + "patch";
+            } else {
+                PATCHER_DIR = realPath + File.separator + "patch";
+            }
         }
         AGENT_PATH = PATCHER_DIR + File.separator + agentName;
         startSchedule();
@@ -67,7 +72,7 @@ public class HotSwapHttpServletContext implements ServletContextListener {
         poolExecutor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                log.info("JavaClass热更新 ");
+                log.info("JavaClass热更新");
                 File patch = new File(PATCHER_DIR);
                 if (patch.exists()) {
                     List<File> listFiles = getFiles(patch);
@@ -92,14 +97,14 @@ public class HotSwapHttpServletContext implements ServletContextListener {
                                 StringBuffer keys = new StringBuffer(PATCHER_DIR);
                                 keys.append(SPILT);
                                 for (String key : fileStatusCache.keySet()) {
+                                    log.debug("热更新文件名 {}", key);
                                     keys.append(key);
                                     keys.append(SPILT);
                                 }
                                 String substring = keys.substring(0, keys.length() - 1);
                                 //VirtualMachine是jdk中tool.jar里面的东西，所以要在pom.xml引用这个jar
                                 VirtualMachine vm = VirtualMachine.attach(PID);
-                                log.info("Agent 链接成功");
-
+                                log.debug("Agent 链接成功");
                                 // 这个路径是相对于被热更的服务的，也就是这个pid的服务，也可以使用绝对路径。
                                 vm.loadAgent(AGENT_PATH, substring);
                                 vm.detach();
