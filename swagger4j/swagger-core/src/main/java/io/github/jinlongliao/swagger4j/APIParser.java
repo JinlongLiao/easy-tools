@@ -83,7 +83,7 @@ public final class APIParser implements APIParseable {
     static {
         if (extraApiDocLoaderPlugins == null) {
             final ServiceLoader<IExtraApiDocLoaderPlugin> loaderPlugins = ServiceLoader.load(IExtraApiDocLoaderPlugin.class, Thread.currentThread().getContextClassLoader());
-             extraApiDocLoaderPlugins = new ArrayList<>(16);
+            extraApiDocLoaderPlugins = new ArrayList<>(16);
             for (IExtraApiDocLoaderPlugin apiDoc : loaderPlugins) {
                 extraApiDocLoaderPlugins.add(apiDoc);
             }
@@ -104,7 +104,7 @@ public final class APIParser implements APIParseable {
         if (StringUtils.isNotBlank(schemesStr)) {
             schemes = schemesStr.split(",");
         } else {
-            schemes = new String[]{"http"};
+            schemes = new String[]{"http", "https"};
         }
         Builder builder = new Builder(schemes, props.getProperty("apiHost"), props.getProperty("apiFile"), packageToScan)
                 .basePath(props.getProperty("apiBasePath"))
