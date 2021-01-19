@@ -35,14 +35,16 @@ import java.util.*;
  */
 public class SwaggerMappingSupport {
     private final static String[] RESOURCE_PATTERNS = {
-            "css/*"
-            , "fonts/*"
-            , "images/*"
-            , "lang/*"
-            , "lib/*"
-            , ""
+            "favicon-16x16.png"
+            , "favicon-32x32.png"
+            , "swagger-ui.js"
+            , "swagger-ui-bundle.js"
+            , "swagger-ui-es-bundle.js"
+            , "swagger-ui-es-bundle-core.js"
+            , "swagger-ui-standalone-preset.js"
             , "index.html"
-            , "swagger-ui.min.js"
+            , "oauth2-redirect.html"
+            , "swagger-ui.css"
     };
     private final static String STATIC_RESCUE_PATH = "io/github/jinlongliao/swagger4j/support/internal/statics";
     private final static String TEMPLATES_PATH = "templates/swagger4j";
@@ -143,7 +145,7 @@ public class SwaggerMappingSupport {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         try (Writer writer = response.getWriter()) {
-            WebContext webContext = new WebContext(request, response, request.getSession().getServletContext());
+            WebContext webContext = new WebContext(request, response, request.getServletContext());
             webContext.setVariable("baseUrl", resolveBaseUrl(request));
             String lang = request.getParameter("lang");
             if (StringUtils.isBlank(lang)) {
