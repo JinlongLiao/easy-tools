@@ -145,12 +145,15 @@ public class SwaggerMappingSupport {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         try (Writer writer = response.getWriter()) {
-            WebContext webContext = new WebContext(request, response, request.getServletContext());
+            WebContext webContext = new WebContext(request, response, request.getSession().getServletContext());
             webContext.setVariable("baseUrl", resolveBaseUrl(request));
             String lang = request.getParameter("lang");
             if (StringUtils.isBlank(lang)) {
                 lang = "zh-cn";
             }
+            Object enableSsl = request.getParameter("enableSsl");
+            enableSsl = enableSsl == null || enableSsl.toString().isEmpty() ? false : true;
+            webContext.setVariable("enableSsl", enableSsl);
             webContext.setVariable("lang", lang);
             webContext.setVariable("getApisUrl", resolveBaseUrl(request));
             final Properties properties = configResolver.obtainConfig(request);

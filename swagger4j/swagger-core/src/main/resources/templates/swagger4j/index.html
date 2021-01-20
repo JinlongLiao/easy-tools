@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+    <meta th:if="${enableSsl}" http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
     <title th:text="${apiTitle}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{{baseUrl}/swagger-ui.css(baseUrl=${baseUrl})}">
     <link rel="icon" type="image/png" th:href="@{{baseUrl}/favicon-32x32.png(baseUrl=${baseUrl})}" sizes="32x32"/>
@@ -24,6 +24,10 @@
             margin: 0;
             background: #fafafa;
         }
+
+
+
+
     </style>
 </head>
 
@@ -55,6 +59,10 @@
 
         window.ui = ui
     }
+
+
+
+
 </script>
 </body>
 </html>
