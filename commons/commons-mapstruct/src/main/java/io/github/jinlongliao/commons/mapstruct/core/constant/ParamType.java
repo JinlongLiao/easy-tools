@@ -1,4 +1,4 @@
-package io.github.jinlonghliao.commons.mapstruct.core.constant;
+package io.github.jinlongliao.commons.mapstruct.core.constant;
 
 /**
  * 参数类型

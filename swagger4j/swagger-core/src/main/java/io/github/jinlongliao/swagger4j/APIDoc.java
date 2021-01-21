@@ -28,15 +28,32 @@ import java.util.Map;
  */
 public class APIDoc {
     private final String swagger = "2.0";
+    /**
+     * 头部介绍
+     */
+    private APIDocInfo info;
+    /**
+     * 接口IP
+     */
+    private String host;
+    /**
+     * 标签名称
+     */
+    private Collection<Tag> tags = new ArrayList<>();
 
     /**
-     * @return swagger协议版本
+     * 协议名称
      */
-    public String getSwagger() {
-        return swagger;
-    }
-
     private String[] schemes = new String[]{"http", "https"};
+    /**
+     * 测试接口列表
+     */
+    private Map<String, Map<String, Operation>> paths;
+    /**
+     * 接口统一前缀
+     */
+    private String basePath;
+    private Map<String, Object> definitions;
 
     /**
      * @return schemes
@@ -46,13 +63,19 @@ public class APIDoc {
     }
 
     /**
+     * @return swagger协议版本
+     */
+    public String getSwagger() {
+        return swagger;
+    }
+
+    /**
      * @param schemes schemes
      */
     public void setSchemes(String[] schemes) {
         this.schemes = schemes;
     }
 
-    private Map<String, Map<String, Operation>> paths;
 
     /**
      * @return 全部path
@@ -68,7 +91,6 @@ public class APIDoc {
         this.paths = paths;
     }
 
-    private Map<String, Object> definitions;
 
     /**
      * @return 全部definition
@@ -84,7 +106,6 @@ public class APIDoc {
         this.definitions = definitions;
     }
 
-    private APIDocInfo info;
 
     /**
      * @return 文档信息。
@@ -100,7 +121,6 @@ public class APIDoc {
         this.info = info;
     }
 
-    private String host;
 
     public String getHost() {
         return host;
@@ -110,7 +130,6 @@ public class APIDoc {
         this.host = host;
     }
 
-    private String basePath;
 
     public String getBasePath() {
         return basePath;
@@ -120,7 +139,6 @@ public class APIDoc {
         this.basePath = basePath;
     }
 
-    private Collection<Tag> tags = new ArrayList<Tag>();
 
     public Collection<Tag> getTags() {
         return tags;

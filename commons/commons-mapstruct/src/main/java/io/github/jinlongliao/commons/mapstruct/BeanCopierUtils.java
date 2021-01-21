@@ -1,7 +1,7 @@
-package io.github.jinlonghliao.commons.mapstruct;
+package io.github.jinlongliao.commons.mapstruct;
 
-import io.github.jinlonghliao.commons.mapstruct.core.IData2Object;
-import io.github.jinlonghliao.commons.mapstruct.core.Proxy;
+import io.github.jinlongliao.commons.mapstruct.core.IData2Object;
+import io.github.jinlongliao.commons.mapstruct.core.Proxy;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

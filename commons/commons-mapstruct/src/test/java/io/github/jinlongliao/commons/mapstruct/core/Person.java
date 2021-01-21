@@ -1,7 +1,7 @@
-package io.github.jinlonghliao.commons.mapstruct.core;
+package io.github.jinlongliao.commons.mapstruct.core;
 
-import io.github.jinlonghliao.commons.mapstruct.annotation.Ignore;
-import io.github.jinlonghliao.commons.mapstruct.annotation.Mapping;
+import io.github.jinlongliao.commons.mapstruct.annotation.Ignore;
+import io.github.jinlongliao.commons.mapstruct.annotation.Mapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

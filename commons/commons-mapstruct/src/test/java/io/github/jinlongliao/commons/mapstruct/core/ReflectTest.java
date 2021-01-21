@@ -1,8 +1,8 @@
-package io.github.jinlonghliao.commons.mapstruct.core;
+package io.github.jinlongliao.commons.mapstruct.core;
 
 
-import io.github.jinlonghliao.commons.mapstruct.BeanCopierUtils;
-import io.github.jinlonghliao.commons.mapstruct.annotation.Ignore;
+import io.github.jinlongliao.commons.mapstruct.BeanCopierUtils;
+import io.github.jinlongliao.commons.mapstruct.annotation.Ignore;
 import org.junit.Test;
 
 import java.lang.reflect.Field;

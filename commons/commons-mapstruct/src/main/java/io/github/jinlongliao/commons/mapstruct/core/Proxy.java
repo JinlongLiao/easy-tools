@@ -1,11 +1,11 @@
-package io.github.jinlonghliao.commons.mapstruct.core;
+package io.github.jinlongliao.commons.mapstruct.core;
 
-import io.github.jinlonghliao.commons.mapstruct.annotation.Ignore;
-import io.github.jinlonghliao.commons.mapstruct.annotation.Mapping;
-import io.github.jinlonghliao.commons.mapstruct.core.constant.ParamType;
-import io.github.jinlonghliao.commons.mapstruct.exception.ConverterException;
-import io.github.jinlonghliao.commons.mapstruct.exception.ConverterNotFountException;
-import io.github.jinlonghliao.commons.mapstruct.utils.Objects;
+import io.github.jinlongliao.commons.mapstruct.annotation.Ignore;
+import io.github.jinlongliao.commons.mapstruct.annotation.Mapping;
+import io.github.jinlongliao.commons.mapstruct.core.constant.ParamType;
+import io.github.jinlongliao.commons.mapstruct.exception.ConverterException;
+import io.github.jinlongliao.commons.mapstruct.exception.ConverterNotFountException;
+import io.github.jinlongliao.commons.mapstruct.utils.Objects;
 import javassist.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

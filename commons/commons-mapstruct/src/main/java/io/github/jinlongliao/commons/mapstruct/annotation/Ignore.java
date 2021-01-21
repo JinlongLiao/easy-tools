@@ -1,4 +1,4 @@
-package io.github.jinlonghliao.commons.mapstruct.annotation;
+package io.github.jinlongliao.commons.mapstruct.annotation;
 
 import java.lang.annotation.*;
 

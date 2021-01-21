@@ -1,4 +1,4 @@
-package io.github.jinlonghliao.commons.mapstruct.map;
+package io.github.jinlongliao.commons.mapstruct.map;
 
 import org.junit.Test;
 

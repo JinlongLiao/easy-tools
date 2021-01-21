@@ -1,4 +1,4 @@
-package io.github.jinlonghliao.commons.mapstruct.exception;
+package io.github.jinlongliao.commons.mapstruct.exception;
 /**
  * 字段值转换类找不到
  * @author liaojinlong

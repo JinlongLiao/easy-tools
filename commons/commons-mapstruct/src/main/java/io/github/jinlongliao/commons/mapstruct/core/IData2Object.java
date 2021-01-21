@@ -1,4 +1,4 @@
-package io.github.jinlonghliao.commons.mapstruct.core;
+package io.github.jinlongliao.commons.mapstruct.core;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;

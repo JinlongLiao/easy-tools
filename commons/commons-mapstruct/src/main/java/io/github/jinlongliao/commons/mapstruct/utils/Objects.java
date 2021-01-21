@@ -23,7 +23,7 @@
  * questions.
  */
 
-package io.github.jinlonghliao.commons.mapstruct.utils;
+package io.github.jinlongliao.commons.mapstruct.utils;
 
 
 import java.util.Arrays;

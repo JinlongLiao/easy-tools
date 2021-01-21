@@ -1,4 +1,4 @@
-package io.github.jinlonghliao.commons.mapstruct.annotation;
+package io.github.jinlongliao.commons.mapstruct.annotation;
 
 
 import java.lang.annotation.*;
@@ -39,7 +39,7 @@ public @interface Mapping {
 
     /**
      * @return Class Name
-     * @see {@link io.github.jinlonghliao.commons.mapstruct.annotation.Mapping#methodName()}
+     * @see {@link Mapping#methodName()}
      */
     String className() default "";
 }
