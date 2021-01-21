@@ -45,7 +45,7 @@ public class Proxy {
 
     private static ClassPool pool = ClassPool.getDefault();
 
-    private static final String PROXY_SUFFIX = "Impl";
+    private static final String PROXY_SUFFIX = "Data2ObjectImpl";
     private static final String INTERFACE_NAME = IData2Object.class.getName();
 
     static {
