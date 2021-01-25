@@ -183,6 +183,9 @@ public class InnerCoreDataConverter {
             return 0;
         }
         if (data instanceof String) {
+            if (((String) data).length() == 0) {
+                return 0;
+            }
             return Integer.parseInt(String.valueOf(data));
         }
         return (int) data;
@@ -199,6 +202,9 @@ public class InnerCoreDataConverter {
             return 0;
         }
         if (data instanceof String) {
+            if (((String) data).length() == 0) {
+                return 0;
+            }
             return Integer.valueOf(String.valueOf(data));
         }
         return (Integer) data;
