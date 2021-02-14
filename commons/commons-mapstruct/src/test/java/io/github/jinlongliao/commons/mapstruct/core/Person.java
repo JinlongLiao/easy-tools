@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class Person {
+public class Person extends Grep implements IAnimal {
     private static final Logger log = LoggerFactory.getLogger(Person.class);
     @Ignore
     private int ignore;

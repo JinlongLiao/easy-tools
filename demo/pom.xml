@@ -11,8 +11,8 @@
 
     <artifactId>demo</artifactId>
     <packaging>pom</packaging>
-<!--    <modules>-->
-<!--        <module>dynamic-datasource-demo</module>-->
-<!--        <module>struts-demo</module>-->
-<!--    </modules>-->
+    <modules>
+        <module>dynamic-datasource-demo</module>
+        <module>struts-demo</module>
+    </modules>
 </project>

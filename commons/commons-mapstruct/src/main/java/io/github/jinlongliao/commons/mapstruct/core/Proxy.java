@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -54,12 +53,33 @@ public class Proxy {
     }
 
     /**
+     * 新增全局自定义转换函数
+     *
+     * @param key
+     * @param fullMethod
+     */
+    public static void addValueConverter(Type key, String fullMethod) {
+        VALUE_CONVERTER.put(key, fullMethod);
+    }
+
+    /**
      * 生成代理对象
      *
      * @return io.github.jinlonghliao.commons.mapstruct.IData2Object
      */
     public IData2Object getProxyObject(Class tClass) {
-        IData2Object proxyObject = null;
+        return this.getProxyObject(tClass, false);
+    }
+
+    /**
+     * 生成代理对象
+     *
+     * @param tClass
+     * @param searchParentField
+     * @return io.github.jinlonghliao.commons.mapstruct.IData2Object
+     */
+    public IData2Object getProxyObject(Class tClass, boolean searchParentField) {
+        IData2Object proxyObject;
         //创建代理类对象
         CtClass ctClass = pool.makeClass(getProxyObjectName(tClass));
         try {
@@ -79,7 +99,7 @@ public class Proxy {
                 } else {
                     throw new ConverterException("参数异常：");
                 }
-                buildToConverterMethod(paramType, method, ctClass, tClass);
+                buildToConverterMethod(paramType, searchParentField, method, ctClass, tClass);
             }
             proxyObject = (IData2Object) ctClass.toClass().newInstance();
         } catch (Exception e) {
@@ -94,16 +114,17 @@ public class Proxy {
      * 构建Map/Array/SERVLET 参数函数实现
      *
      * @param paramType
+     * @param searchParentField
      * @param method
      * @param ctClass
      * @param tClass
      * @throws CannotCompileException
      * @throws NotFoundException
      */
-    private void buildToConverterMethod(ParamType paramType, CtMethod method, CtClass ctClass, Class tClass) throws CannotCompileException, NotFoundException {
+    private void buildToConverterMethod(ParamType paramType, boolean searchParentField, CtMethod method, CtClass ctClass, Class tClass) throws CannotCompileException, NotFoundException {
         String methodName = method.getName();
         CtMethod cm = new CtMethod(method.getReturnType(), methodName, method.getParameterTypes(), ctClass);
-        final String methodBody = getMethodBodyStr(tClass, paramType);
+        final String methodBody = getMethodBodyStr(tClass, searchParentField, paramType);
         cm.setBody(methodBody);
         ctClass.addMethod(cm);
     }
@@ -113,16 +134,17 @@ public class Proxy {
      * 函数实现内容（Map/Array）
      *
      * @param tClass
+     * @param searchParentField 关联父属性
      * @param paramType
      * @return 接口函数实现内容 （Map/Array）
      */
-    private String getMethodBodyStr(Class tClass, ParamType paramType) {
+    private String getMethodBodyStr(Class tClass, boolean searchParentField, ParamType paramType) {
         StringBuffer buffer = new StringBuffer("{");
-        final Field[] fields = tClass.getDeclaredFields();
+        final List<Field> fieldList = getFields(tClass, searchParentField);
         final String objectName = tClass.getName();
         buffer.append(objectName + " tmp= new " + objectName + "();");
         int fieldIndex = 0;
-        for (Field field : fields) {
+        for (Field field : fieldList) {
             Ignore ignore = field.getAnnotation(Ignore.class);
             if (ignore != null && ignore.value()) {
                 continue;
@@ -186,6 +208,24 @@ public class Proxy {
         buffer.append("return tmp;");
         buffer.append("}");
         return buffer.toString();
+    }
+
+    private List<Field> getFields(Class tClass, boolean searchParentField) {
+        boolean anInterface = Modifier.isInterface(tClass.getModifiers());
+        if (anInterface) {
+            return Collections.emptyList();
+        }
+        if (tClass.equals(Object.class)) {
+            return Collections.emptyList();
+        }
+        final Field[] fields = tClass.getDeclaredFields();
+        ArrayList<Field> fieldList = new ArrayList<>(fields.length);
+        if (searchParentField) {
+            Class superclass = tClass.getSuperclass();
+            fieldList.addAll(this.getFields(superclass, searchParentField));
+        }
+        fieldList.addAll(Arrays.asList(fields));
+        return fieldList;
     }
 
     /**

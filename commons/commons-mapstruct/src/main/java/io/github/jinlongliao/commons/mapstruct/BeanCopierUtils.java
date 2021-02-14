@@ -18,6 +18,7 @@ public class BeanCopierUtils {
      * 实现类缓存
      */
     private final static Map<Class, IData2Object> DATA_2_OBJECT_CACHE = new ConcurrentHashMap<>(1 << 8);
+    private final static Map<Class, IData2Object> FULL_DATA_2_OBJECT_CACHE = new ConcurrentHashMap<>(1 << 8);
     private static final Proxy PROXY = new Proxy();
 
     /**
@@ -36,6 +37,27 @@ public class BeanCopierUtils {
             } else {
                 final IData2Object proxyObject = PROXY.getProxyObject(tClass);
                 DATA_2_OBJECT_CACHE.put(tClass, proxyObject);
+                return proxyObject;
+            }
+        }
+    }
+
+    /**
+     * 获取数据转换类,包涵父类属性
+     *
+     * @param tClass
+     * @return IData2Object
+     */
+    public static IData2Object getFullData2Object(Class tClass) {
+        if (FULL_DATA_2_OBJECT_CACHE.containsKey(tClass)) {
+            return FULL_DATA_2_OBJECT_CACHE.get(tClass);
+        }
+        synchronized (tClass) {
+            if (FULL_DATA_2_OBJECT_CACHE.containsKey(tClass)) {
+                return FULL_DATA_2_OBJECT_CACHE.get(tClass);
+            } else {
+                final IData2Object proxyObject = PROXY.getProxyObject(tClass, true);
+                FULL_DATA_2_OBJECT_CACHE.put(tClass, proxyObject);
                 return proxyObject;
             }
         }
