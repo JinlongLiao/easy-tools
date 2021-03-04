@@ -40,3 +40,7 @@ hs_err_pid*
 /demo/dynamic-datasource-demo/spring-boot-demo/target/
 /demo/dynamic-datasource-demo/aspect-demo/target/
 /demo/dynamic-datasource-demo/spring-aspect-demo/target/
+/commons/commons-database/dynamic-datasource/target/dynamic-datasource-1.0.0.release.pom
+/commons/commons-database/dynamic-datasource/target/dynamic-datasource-1.0.0.release.pom.asc
+/target/easy-tools-1.0.0.release.pom
+/target/easy-tools-1.0.0.release.pom.asc
