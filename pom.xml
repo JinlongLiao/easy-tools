@@ -7,13 +7,13 @@
     <groupId>io.github.jinlongliao</groupId>
     <artifactId>easy-tools</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1.release</version>
+    <version>1.0.2-SNAPSHOT</version>
     <description>JAVA 开发工具集</description>
     <name>easy-tools</name>
     <url>https://github.com/JinlongLiao/easy-tools</url>
     <modules>
         <module>commons</module>
-<!--        <module>demo</module>-->
+        <module>demo</module>
         <module>spring-commons</module>
         <module>spring-boot-commons</module>
         <module>swagger4j</module>
