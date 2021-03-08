@@ -19,7 +19,7 @@ package io.github.jinlongliao.swagger4j;
  * @author yonghaun
  * @since 1.0.0
  */
-class Tag {
+public class Tag {
 
     private String name;
     private String description;
