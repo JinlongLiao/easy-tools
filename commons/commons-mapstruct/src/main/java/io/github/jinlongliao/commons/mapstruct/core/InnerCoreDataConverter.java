@@ -67,6 +67,32 @@ public class InnerCoreDataConverter {
     }
 
     /**
+     * 数据转换为 Boolean
+     *
+     * @param data
+     * @return Boolean
+     */
+    public static boolean getBoolean(Object data) {
+        return getBoolean2(data);
+    }
+
+    /**
+     * 数据转换为Boolean
+     *
+     * @param data
+     * @return Boolean
+     */
+    public static Boolean getBoolean2(Object data) {
+        if (data == null) {
+            return false;
+        }
+        if (data instanceof String) {
+            return Boolean.parseBoolean(String.valueOf(data));
+        }
+        return (Boolean) data;
+    }
+
+    /**
      * 数据转换为Short
      *
      * @param data
@@ -362,4 +388,15 @@ public class InnerCoreDataConverter {
         return (String[]) data;
     }
 
+    /**
+     * 泛型转换
+     *
+     * @param data
+     * @param tClass
+     * @param <T>
+     * @return /
+     */
+    public static <T> T getT(Class<T> tClass, Object data) {
+        return tClass.cast(data);
+    }
 }

@@ -53,7 +53,7 @@ public class Proxy {
         for (Method method : methods) {
             final Class<?> type = method.getReturnType();
             final String methodName = method.getName();
-            VALUE_CONVERTER.put(type, className + DOT + methodName);
+            VALUE_CONVERTER.put(type, className + DOT + methodName + "(");
         }
     }
 
@@ -184,11 +184,11 @@ public class Proxy {
                         ? mapping.source()
                         : field.getName()
                         : field.getName();
-                buffer.append("($1.get(\"");
+                buffer.append("$1.get(\"");
                 buffer.append(fieldName);
                 buffer.append("\"))");
             } else if (ParamType.ARRAY.equals(paramType)) {
-                buffer.append("($1[");
+                buffer.append("$1[");
                 buffer.append(fieldIndex);
                 buffer.append("])");
             } else if (ParamType.SERVLET.equals(paramType)) {
@@ -199,15 +199,15 @@ public class Proxy {
                         : field.getName();
                 Class<?> type = field.getType();
                 if (type == List.class) {
-                    buffer.append("( java.util.Arrays.asList($1.getParameterValues(\"");
+                    buffer.append(" java.util.Arrays.asList($1.getParameterValues(\"");
                     buffer.append(fieldName);
                     buffer.append("\")))");
                 } else if (type.isArray()) {
-                    buffer.append("($1.getParameterValues(\"");
+                    buffer.append("$1.getParameterValues(\"");
                     buffer.append(fieldName);
                     buffer.append("\"))");
                 } else {
-                    buffer.append("($1.getParameter(\"");
+                    buffer.append("$1.getParameter(\"");
                     buffer.append(fieldName);
                     buffer.append("\"))");
                 }
@@ -262,7 +262,7 @@ public class Proxy {
             if (VALUE_CONVERTER.containsKey(type)) {
                 converterMethod = VALUE_CONVERTER.get(type);
             } else {
-                throw new ConverterNotFountException("字段值转换类找不到");
+                converterMethod = " ((" + field.getType().getName() + ")";
             }
         }
         return converterMethod;
