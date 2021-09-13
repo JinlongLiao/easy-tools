@@ -16,7 +16,7 @@
     </filter-mapping>
     <filter>
         <filter-name>swagger</filter-name>
-        <filter-class>io.github.jinlongliao.swagger4j.SwaggerFilter</filter-class>
+        <filter-class>io.github.jinlongliao.api.SwaggerFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>swagger</filter-name>

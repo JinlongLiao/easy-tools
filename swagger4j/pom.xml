@@ -23,7 +23,7 @@
         <fastjson.version>1.2.75</fastjson.version>
         <servlet.version>3.1.0</servlet.version>
         <struts2.version>2.5.26</struts2.version>
-        <thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
+        <freemark.version>2.3.31</freemark.version>
         <classgraph.version>4.8.98</classgraph.version>
     </properties>
     <build>

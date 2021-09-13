@@ -1,0 +1,20 @@
+[
+  {
+    "name": "swagger",
+    "url": "/json/swagger.json",
+    "swaggerVersion": "2.0",
+    "location": "/json/swagger.json"
+  },
+  {
+    "name": "swagger1",
+    "url": "/json/swagger1.json",
+    "swaggerVersion": "2.0",
+    "location": "/json/swagger1.json"
+  },
+  {
+    "name": "apiJson",
+    "url": "/json/apiJson",
+    "swaggerVersion": "2.0",
+    "location": "/json/apiJson"
+  }
+]

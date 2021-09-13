@@ -6,9 +6,9 @@ import friendGame.action.logic.ILogic;
 import friendGame.action.logic.LogicRegistry;
 import friendGame.action.msg.IRequest;
 import friendGame.action.msg.MsgRegistry;
-import io.github.jinlongliao.swagger4j.APIDoc;
-import io.github.jinlongliao.swagger4j.Operation;
-import io.github.jinlongliao.swagger4j.plugin.IExtraApiDocLoaderPlugin;
+import io.github.jinlongliao.api.APIDoc;
+import io.github.jinlongliao.api.Operation;
+import io.github.jinlongliao.api.plugin.IExtraApiDocLoaderPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

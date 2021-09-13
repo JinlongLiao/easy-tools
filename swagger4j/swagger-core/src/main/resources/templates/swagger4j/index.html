@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta th:if="${enableSsl}" http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
-    <title th:text="${apiTitle}"></title>
-    <link rel="stylesheet" type="text/css" th:href="@{{baseUrl}/swagger-ui.css(baseUrl=${baseUrl})}">
-    <link rel="icon" type="image/png" th:href="@{{baseUrl}/favicon-32x32.png(baseUrl=${baseUrl})}" sizes="32x32"/>
-    <link rel="icon" type="image/png" th:href="@{{baseUrl}/favicon-16x16.png(baseUrl=${baseUrl})}" sizes="16x16"/>
+
+    <title>GOLD-COIN-ROOM API</title>
+    <link rel="stylesheet" type="text/css" href="${baseUrl}/swagger-ui.css">
+    <link rel="icon" type="image/png" href="${baseUrl}/favicon-32x32.png"
+          sizes="32x32"/>
+    <link rel="icon" type="image/png" href="${baseUrl}/favicon-16x16.png"
+          sizes="16x16"/>
     <style>
         html {
             box-sizing: border-box;
@@ -26,20 +28,20 @@
         }
 
 
-
-
     </style>
 </head>
 
 <body>
 <div id="swagger-ui"></div>
 
-<script th:src='@{{baseUrl}/swagger-ui-bundle.js(baseUrl=${baseUrl})}' type='text/javascript' charset="UTF-8"></script>
-<script th:src='@{{baseUrl}/swagger-ui-standalone-preset.js(baseUrl=${baseUrl})}' type='text/javascript'
+<script src='${baseUrl}/swagger-ui-bundle.js' type='text/javascript'
+        charset="UTF-8"></script>
+<script src='${baseUrl}/swagger-ui-standalone-preset.js'
+        type='text/javascript'
         charset="UTF-8"></script>
 <script>
     window.onload = function () {
-        const url = '[[${getApisUrl}]]';
+        const url = '${baseUrl}';
 
         // Begin Swagger UI call region
         const ui = SwaggerUIBundle({
@@ -59,8 +61,6 @@
 
         window.ui = ui
     }
-
-
 
 
 </script>
