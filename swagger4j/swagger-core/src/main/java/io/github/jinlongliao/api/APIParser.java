@@ -31,6 +31,7 @@
  */
 package io.github.jinlongliao.api;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import io.github.jinlongliao.api.annotation.*;
@@ -130,6 +131,7 @@ public final class APIParser implements APIParseable {
                 .description(props.getProperty("apiDescription"))
                 .termsOfService(props.getProperty("termsOfService"))
                 .title(props.getProperty("apiTitle"))
+                .contact(props.getProperty("contact"))
                 .version(props.getProperty("apiVersion"))
                 .uiType(props.getProperty("uiType"))
                 .suffix(props.getProperty("suffix"));

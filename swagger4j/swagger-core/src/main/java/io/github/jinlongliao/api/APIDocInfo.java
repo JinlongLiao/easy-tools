@@ -15,6 +15,10 @@
  */
 package io.github.jinlongliao.api;
 
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.Map;
+
 /**
  * API文档信息。
  * <p>
@@ -40,11 +44,11 @@ public class APIDocInfo {
     private String version;
     private String title;
     private String termsOfService;
-    private String contact;
+    private Map<String, Object> contact;
     private License license;
 
     private APIDocInfo(Builder builder) {
-        this.contact = builder.contact;
+        this.contact = JSONObject.parseObject(builder.contact, Map.class);
         this.description = builder.description;
         this.license = builder.license;
         this.termsOfService = builder.termsOfService;
@@ -176,7 +180,7 @@ public class APIDocInfo {
         return termsOfService;
     }
 
-    public String getContact() {
+    public Map<String, Object> getContact() {
         return contact;
     }
 
